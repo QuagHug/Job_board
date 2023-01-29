@@ -1,0 +1,1 @@
+{"version":3,"file":"mailservice.js","sourceRoot":"","sources":["../../utils/mailservice.ts"],"names":[],"mappings":";;;;;AAAA,4DAAoC;AAEpC,MAAM,eAAe,GAAG,oBAAU,CAAC,eAAe,CAAC;IAC/C,OAAO,EAAE,OAAO;IAChB,IAAI,EAAE;QACF,IAAI,EAAE,OAAO,CAAC,GAAG,CAAC,eAAe;QACjC,IAAI,EAAE,OAAO,CAAC,GAAG,CAAC,eAAe;KACpC;CACJ,CAAC,CAAA;AAEF,kBAAe,eAAe,CAAC"}
