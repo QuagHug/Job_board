@@ -10,6 +10,7 @@ const defaultRouter = express.Router();
 defaultRouter.get(
 	"/",
     MDW.authenticate
+
 )
 
 defaultRouter.get(
