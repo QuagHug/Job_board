@@ -5,11 +5,11 @@ import * as MDW from "../middlewares"
 
 const verificationRouter = express.Router();
 
-verificationRouter.post(
-  '/',
-  MDW.verification,
-  formatJsonVerification
-)
+// verificationRouter.post(
+//   '/',
+//   MDW.verification,
+//   formatJsonVerification
+// )
 
 verificationRouter.get(
   '/email/:token',
