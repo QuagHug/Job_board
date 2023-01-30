@@ -35,7 +35,6 @@ const default_route_1 = __importDefault(require("./routes/default.route"));
 const dotenv = __importStar(require("dotenv"));
 const job_route_1 = __importDefault(require("./routes/job.route"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
@@ -51,7 +50,20 @@ app.use((0, cookie_parser_1.default)());
 //     }
 //   }
 // }
-app.use((0, cors_1.default)({ origin: "*" }));
+// app.use(cors({ origin: "*"}));
+app.use(function (req, res, next) {
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'https://job-board-client-zeta.vercel.app/');
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    // Pass to next layer of middleware
+    next();
+});
 app.use('/', default_route_1.default);
 app.use('/jobs', job_route_1.default);
 app.use('/companies', company_route_1.default);
