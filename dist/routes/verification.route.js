@@ -30,11 +30,7 @@ const express_1 = __importDefault(require("express"));
 const formatJson_1 = require("../utils/formatJson");
 const MDW = __importStar(require("../middlewares"));
 const verificationRouter = express_1.default.Router();
-// verificationRouter.post(
-//   '/',
-//   MDW.verification,
-//   formatJsonVerification
-// )
+verificationRouter.post('/', MDW.verification, formatJson_1.formatJsonVerification);
 verificationRouter.get('/email/:token', 
 // MDW.authenticate,
 MDW.emailConfirmation, formatJson_1.formatJsonApiResource);
