@@ -51,7 +51,9 @@ app.use((0, cookie_parser_1.default)());
 //     }
 //   }
 // }
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: '*'
+}));
 app.use('/', default_route_1.default);
 app.use('/jobs', job_route_1.default);
 app.use('/companies', company_route_1.default);
