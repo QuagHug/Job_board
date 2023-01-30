@@ -35,7 +35,6 @@ const default_route_1 = __importDefault(require("./routes/default.route"));
 const dotenv = __importStar(require("dotenv"));
 const job_route_1 = __importDefault(require("./routes/job.route"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
@@ -51,9 +50,11 @@ app.use((0, cookie_parser_1.default)());
 //     }
 //   }
 // }
-app.use((0, cors_1.default)({
-    origin: '*'
-}));
+app.all('/', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
 app.use('/', default_route_1.default);
 app.use('/jobs', job_route_1.default);
 app.use('/companies', company_route_1.default);
