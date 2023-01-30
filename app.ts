@@ -27,7 +27,7 @@ app.use(cookies());
 //     }
 //   }
 // }
-app.use(cors());
+app.use(cors({ origin: "*" }));
 // app.options('*', cors())
 
 app.use('/', defaultRouter)
