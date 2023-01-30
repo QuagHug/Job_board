@@ -28,12 +28,7 @@ app.use(cookies());
 //   }
 // }
 
-app.all('/', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization");
-    res.header("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE, OPTIONS");
-    next()
-  });
+app.use(cors({ origin: "*"}));
 
 app.use('/', defaultRouter)
 app.use('/jobs', jobRouter)
