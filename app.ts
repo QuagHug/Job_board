@@ -30,7 +30,7 @@ app.use(cookies());
 app.use(cors());
 // app.options('*', cors())
 
-app.use('/', defaultRouter)
+app.use('/', cors(), defaultRouter)
 app.use('/jobs', jobRouter)
 app.use('/companies', companyRouter)
 app.use('/api', userRouter)

@@ -78,7 +78,7 @@ const createUserVerification = (req, res, next) => {
     const userId = lodash_1.default.chain(req).get("result").get("_id").value();
     const userEmail = lodash_1.default.chain(req).get("result").get("email").value();
     const jwt = jsonwebtoken_1.default.sign({ userId }, "mk98mb2RAZn^78tV!bok");
-    const url = `http://localhost:4000/verification/email/${jwt}`;
+    const url = `https://job-board-quaghug.vercel.app/verification/email/${jwt}`;
     mailservice_1.default.sendMail({
         to: userEmail,
         subject: 'Confirm Email',
@@ -99,7 +99,7 @@ const emailConfirmation = async (req, res, next) => {
     catch (err) {
         throw err;
     }
-    res.redirect("http://127.0.0.1:5501/client/");
+    // res.redirect("http://127.0.0.1:5501/client/");
     return next();
 };
 exports.emailConfirmation = emailConfirmation;
