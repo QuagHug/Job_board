@@ -28,7 +28,7 @@ app.use(cookies());
 //   }
 // }
 app.use(cors());
-app.options('*', cors())
+// app.options('*', cors())
 
 app.use('/', defaultRouter)
 app.use('/jobs', jobRouter)
