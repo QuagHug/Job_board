@@ -11,21 +11,9 @@ import cookies from "cookie-parser"
 import cors from "cors"
 
 const app = express()
-app.all("/*", (req, res, next) => {
-    // CORS headers
-    res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
-    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-    // Set custom headers for CORS
-    res.header("Access-Control-Allow-Headers", "Content-type,Accept,X-Custom-Header");
-
-    if (req.method === "OPTIONS") {
-        return res.status(200);
-    }
-
-    return next();
-})
-
 app.use(cors());
+app.options('*', cors());
+
 
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json());   
@@ -37,8 +25,6 @@ app.use('/companies', companyRouter)
 app.use('/api', userRouter)
 app.use('/verification', verificationRouter)
 
-
-dotenv.config();
 
 const port = process.env.PORT || 4000
 app.listen({port}, async () => {
