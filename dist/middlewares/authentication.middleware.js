@@ -35,7 +35,7 @@ const authenticate = async (req, res, next) => {
     // const jwt = _.last(_.split(_.get(req, 'headers.Authorization') as string, " "))
     const jwt = req.cookies.jwt;
     if (!jwt)
-        return res.status(405).json({ message: "Token is missing" });
+        return res.status(405).json({ message: "Token is missing haha" });
     try {
         const result = jsonwebtoken_1.default.verify(jwt, process.env.JWT_SECRET);
         const user = await UserService.findByEmail(lodash_1.default.get(result, "email"));

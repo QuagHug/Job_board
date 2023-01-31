@@ -7,7 +7,7 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
   // Headers Authorization: Bearer {{token}}
   // const jwt = _.last(_.split(_.get(req, 'headers.Authorization') as string, " "))
   const jwt = req.cookies.jwt;
-  if (!jwt) return res.status(405).json({ message: "Token is missing" })
+  if (!jwt) return res.status(405).json({ message: "Token is missing haha" })
 
   try {
     const result = jsonwebtoken.verify(jwt, process.env.JWT_SECRET);
