@@ -10,6 +10,9 @@ import jobRouter from "./routes/job.route";
 import cookies from "cookie-parser"
 import cors from "cors"
 
+dotenv.config();
+
+
 const app = express()
 app.use(cors());
 
@@ -22,6 +25,8 @@ app.use('/jobs', jobRouter)
 app.use('/companies', companyRouter)
 app.use('/api', userRouter)
 app.use('/verification', verificationRouter)
+
+console.log(process.env.DB_URI);
 
 
 const port = process.env.PORT || 4000
