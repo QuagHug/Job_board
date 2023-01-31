@@ -12,10 +12,7 @@ import cors from "cors"
 
 const app = express()
 
-app.use(cors({
-    origin: ["https://job-board-client-zeta.vercel.app"],
-    credentials: true
-}));
+app.use(cors());
 
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json());   
