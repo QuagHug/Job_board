@@ -12,7 +12,6 @@ import cors from "cors"
 
 const app = express()
 
-app.use(cors());
 app.options('/', cors());
 
 
@@ -26,6 +25,7 @@ app.use('/companies', companyRouter)
 app.use('/api', userRouter)
 app.use('/verification', verificationRouter)
 
+app.use(cors());
 
 dotenv.config();
 
