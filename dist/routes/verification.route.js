@@ -30,7 +30,17 @@ const express_1 = __importDefault(require("express"));
 const formatJson_1 = require("../utils/formatJson");
 const MDW = __importStar(require("../middlewares"));
 const verificationRouter = express_1.default.Router();
-verificationRouter.post('/', MDW.verification, formatJson_1.formatJsonVerification);
+verificationRouter.post('/', (req, res, next) => {
+    // CORS headers
+    res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+    // Set custom headers for CORS
+    res.header("Access-Control-Allow-Headers", "Content-type,Accept,X-Custom-Header");
+    if (req.method === "OPTIONS") {
+        return res.status(200);
+    }
+    return next();
+}, MDW.verification, formatJson_1.formatJsonVerification);
 verificationRouter.get('/email/:token', 
 // MDW.authenticate,
 MDW.emailConfirmation, formatJson_1.formatJsonApiResource);
