@@ -12,27 +12,16 @@ import cors from "cors"
 
 const app = express()
 
-app.use(express.urlencoded({extended: true})); 
-app.use(express.json());   
-app.use(cookies());
-
-// var whitelist = ['http://localhost:4000', "http://localhost:5501" /** other domains if any */ ]
-// var corsOptions = {
-//   credentials: true,
-//   origin: function(origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   }
-// }
 app.use(cors({
     origin: ["https://job-board-client-zeta.vercel.app"],
     credentials: true
 }));
 
-app.use('/', cors(), defaultRouter)
+app.use(express.urlencoded({extended: true})); 
+app.use(express.json());   
+app.use(cookies());
+
+app.use('/', defaultRouter)
 app.use('/jobs', jobRouter)
 app.use('/companies', companyRouter)
 app.use('/api', userRouter)
