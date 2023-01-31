@@ -29,9 +29,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const formatJson_1 = require("../utils/formatJson");
 const MDW = __importStar(require("../middlewares"));
-const cors_1 = __importDefault(require("cors"));
 const verificationRouter = express_1.default.Router();
-verificationRouter.post('/', (0, cors_1.default)(), MDW.verification, formatJson_1.formatJsonVerification);
+verificationRouter.post('/', MDW.verification, formatJson_1.formatJsonVerification);
 verificationRouter.get('/email/:token', 
 // MDW.authenticate,
 MDW.emailConfirmation, formatJson_1.formatJsonApiResource);
