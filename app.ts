@@ -28,7 +28,7 @@ app.use(cookies());
 //   }
 // }
 app.use(cors({
-    origin: "*",
+    origin: "https://job-board-client-zeta.vercel.app",
     credentials: true
 }));
 
