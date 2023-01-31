@@ -19,7 +19,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Content-type,Accept,X-Custom-Header");
 
     if (req.method === "OPTIONS") {
-        return res.status(200).end();
+        return res.status(200);
     }
 
     return next();
