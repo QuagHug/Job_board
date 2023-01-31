@@ -35,10 +35,18 @@ const default_route_1 = __importDefault(require("./routes/default.route"));
 const dotenv = __importStar(require("dotenv"));
 const job_route_1 = __importDefault(require("./routes/job.route"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
-// app.options('/', cors());
+app.use((req, res, next) => {
+    // CORS headers
+    res.header("Access-Control-Allow-Origin", "YOUR_URL"); // restrict it to the required domain
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+    // Set custom headers for CORS
+    res.header("Access-Control-Allow-Headers", "Content-type,Accept,X-Custom-Header");
+    if (req.method === "OPTIONS") {
+        return res.status(200).end();
+    }
+    return next();
+});
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
