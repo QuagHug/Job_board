@@ -12,7 +12,7 @@ import cors from "cors"
 
 const app = express()
 
-app.options('*', cors());
+// app.options('/', cors());
 app.use(cors());
 
 app.use(express.urlencoded({extended: true})); 
