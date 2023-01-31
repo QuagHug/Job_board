@@ -38,7 +38,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
 app.use((req, res, next) => {
     // CORS headers
-    res.header("Access-Control-Allow-Origin", "YOUR_URL"); // restrict it to the required domain
+    res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
     // Set custom headers for CORS
     res.header("Access-Control-Allow-Headers", "Content-type,Accept,X-Custom-Header");
