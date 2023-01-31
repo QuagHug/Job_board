@@ -37,7 +37,8 @@ const job_route_1 = __importDefault(require("./routes/job.route"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
-app.options('/', (0, cors_1.default)());
+app.options('*', (0, cors_1.default)());
+app.use((0, cors_1.default)());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
@@ -46,7 +47,6 @@ app.use('/jobs', job_route_1.default);
 app.use('/companies', company_route_1.default);
 app.use('/api', user_route_1.default);
 app.use('/verification', verification_route_1.default);
-app.use((0, cors_1.default)());
 dotenv.config();
 const port = process.env.PORT || 4000;
 app.listen({ port }, async () => {
