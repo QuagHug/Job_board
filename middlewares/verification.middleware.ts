@@ -74,7 +74,7 @@ export const emailConfirmation = async (req: Request, res: Response, next: NextF
 		await SVC.updateOneUser(userId, {emailConfirmed: true});
 		// const user = await SVC.findOneUser({ _id: userId });
 		// _.set(req, "result", user);
-		return res.redirect("https://job-board-quaghug.vercel.app/client/");
+		return res.redirect("https://job-board-client-zeta.vercel.app/login.html");
 	}
 	catch(err) {
 		throw err;
