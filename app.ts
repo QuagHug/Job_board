@@ -30,14 +30,15 @@ app.use('/verification', verificationRouter)
 console.log(process.env.DB_URI);
 
 // const options : ConnectOptions = ;
+mongoose.connect(process.env.DB_URI)
+.then(() => {
+    console.log("connected");
+})
+.catch(err => {
+    console.log(err);
+})
 
 const port = process.env.PORT || 4000
-app.listen({port}, async () => {
-    await mongoose.connect(process.env.DB_URI)
-    .then(() => {
-        console.log("connected");
-    })
-    .catch(err => {
-        console.log(err);
-    })
+app.listen({port}, () => {
+    console.log("server running");
 })

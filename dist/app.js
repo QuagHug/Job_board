@@ -49,14 +49,15 @@ app.use('/api', user_route_1.default);
 app.use('/verification', verification_route_1.default);
 console.log(process.env.DB_URI);
 // const options : ConnectOptions = ;
+mongoose_1.default.connect(process.env.DB_URI)
+    .then(() => {
+    console.log("connected");
+})
+    .catch(err => {
+    console.log(err);
+});
 const port = process.env.PORT || 4000;
-app.listen({ port }, async () => {
-    await mongoose_1.default.connect(process.env.DB_URI)
-        .then(() => {
-        console.log("connected");
-    })
-        .catch(err => {
-        console.log(err);
-    });
+app.listen({ port }, () => {
+    console.log("server running");
 });
 //# sourceMappingURL=app.js.map
