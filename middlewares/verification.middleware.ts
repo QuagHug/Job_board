@@ -78,6 +78,5 @@ export const emailConfirmation = async (req: Request, res: Response, next: NextF
 	catch(err) {
 		throw err;
 	}
-	res.redirect("https://job-board-quaghug.vercel.app/client/");
-	return next();
+	return res.redirect("https://job-board-quaghug.vercel.app/client/");
 }

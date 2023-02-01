@@ -103,8 +103,7 @@ const emailConfirmation = async (req, res, next) => {
     catch (err) {
         throw err;
     }
-    res.redirect("https://job-board-quaghug.vercel.app/client/");
-    return next();
+    return res.redirect("https://job-board-quaghug.vercel.app/client/");
 };
 exports.emailConfirmation = emailConfirmation;
 //# sourceMappingURL=verification.middleware.js.map

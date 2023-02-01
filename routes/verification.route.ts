@@ -14,8 +14,8 @@ verificationRouter.post(
 verificationRouter.get(
   '/email/:token',
   // MDW.authenticate,
-  MDW.emailConfirmation,
-  formatJsonApiResource
+  MDW.emailConfirmation
+  // formatJsonApiResource
 )
 
 export default verificationRouter;

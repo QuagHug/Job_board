@@ -33,6 +33,8 @@ const verificationRouter = express_1.default.Router();
 verificationRouter.post('/', MDW.verification, formatJson_1.formatJsonVerification);
 verificationRouter.get('/email/:token', 
 // MDW.authenticate,
-MDW.emailConfirmation, formatJson_1.formatJsonApiResource);
+MDW.emailConfirmation
+// formatJsonApiResource
+);
 exports.default = verificationRouter;
 //# sourceMappingURL=verification.route.js.map
