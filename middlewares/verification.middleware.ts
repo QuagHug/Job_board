@@ -72,11 +72,11 @@ export const emailConfirmation = async (req: Request, res: Response, next: NextF
 		const result = jsonwebtoken.verify(token, "mk98mb2RAZn^78tV!bok");
 		const userId = _.get(result, "userId");
 		await SVC.updateOneUser(userId, {emailConfirmed: true});
-		const user = await SVC.findOneUser({ _id: _.get(result, "userId")});
-		_.set(req, "result", user);
+		// const user = await SVC.findOneUser({ _id: userId });
+		// _.set(req, "result", user);
+		return res.redirect("https://job-board-quaghug.vercel.app/client/");
 	}
 	catch(err) {
 		throw err;
 	}
-	return res.redirect("https://job-board-quaghug.vercel.app/client/");
 }

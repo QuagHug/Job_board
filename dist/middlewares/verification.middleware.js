@@ -97,13 +97,13 @@ const emailConfirmation = async (req, res, next) => {
         const result = jsonwebtoken_1.default.verify(token, "mk98mb2RAZn^78tV!bok");
         const userId = lodash_1.default.get(result, "userId");
         await SVC.updateOneUser(userId, { emailConfirmed: true });
-        const user = await SVC.findOneUser({ _id: lodash_1.default.get(result, "userId") });
-        lodash_1.default.set(req, "result", user);
+        // const user = await SVC.findOneUser({ _id: userId });
+        // _.set(req, "result", user);
+        return res.redirect("https://job-board-quaghug.vercel.app/client/");
     }
     catch (err) {
         throw err;
     }
-    return res.redirect("https://job-board-quaghug.vercel.app/client/");
 };
 exports.emailConfirmation = emailConfirmation;
 //# sourceMappingURL=verification.middleware.js.map
