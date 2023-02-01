@@ -59,7 +59,7 @@ app.listen({ port }, async () => {
         });
     })
         .catch(err => {
-        throw err;
+        console.log(err);
     });
 });
 //# sourceMappingURL=app.js.map

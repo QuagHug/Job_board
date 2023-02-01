@@ -40,6 +40,6 @@ app.listen({port}, async () => {
         })
     })
     .catch(err => {
-        throw err;
+        console.log(err);
     })
 })
