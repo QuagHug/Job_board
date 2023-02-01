@@ -36,7 +36,7 @@ export const verification = async (req: Request, res: Response, next: NextFuncti
 			return createJwt(email);
 		})
 		.then(async jwt => {
-			res.cookie("jwt", jwt, { maxAge: exTime });
+			res.cookie("jwt", jwt, { maxAge: exTime, httpOnly: true, secure: true });
 			_.set(req, "success", true);
 			return next();
 		})

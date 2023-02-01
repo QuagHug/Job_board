@@ -63,7 +63,7 @@ const verification = async (req, res, next) => {
         return createJwt(email);
     })
         .then(async (jwt) => {
-        res.cookie("jwt", jwt, { maxAge: exTime });
+        res.cookie("jwt", jwt, { maxAge: exTime, httpOnly: true, secure: true });
         lodash_1.default.set(req, "success", true);
         return next();
     })
