@@ -1,12 +1,6 @@
-import nodemailer from "nodemailer";
+import sendGrid from "@sendgrid/mail"
 
-const mailTransporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.NODEMAILER_USER,
-        pass: process.env.NODEMAILER_PASS
-    }
-})
+sendGrid.setApiKey(process.env.SENDGRID_SECRET);
 
-export default mailTransporter;
+export default sendGrid;
 
