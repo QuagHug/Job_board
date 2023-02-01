@@ -48,9 +48,12 @@ app.use('/companies', company_route_1.default);
 app.use('/api', user_route_1.default);
 app.use('/verification', verification_route_1.default);
 console.log(process.env.DB_URI);
+// const options : ConnectOptions = ;
 const port = process.env.PORT || 4000;
 app.listen({ port }, async () => {
-    await mongoose_1.default.connect(process.env.DB_URI)
+    await mongoose_1.default.connect(process.env.DB_URI, {
+        useCreateIndex: false
+    })
         .then(() => {
         console.table({
             dbtype: "mongodb",

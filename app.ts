@@ -1,5 +1,6 @@
 import express from "express"
 import mongoose from "mongoose"
+import { ConnectOptions } from "mongoose"
 import userRouter from "./routes/user.route"
 import verificationRouter from "./routes/verification.route";
 import companyRouter from "./routes/company.route";
@@ -28,10 +29,13 @@ app.use('/verification', verificationRouter)
 
 console.log(process.env.DB_URI);
 
+// const options : ConnectOptions = ;
 
 const port = process.env.PORT || 4000
 app.listen({port}, async () => {
-    await mongoose.connect(process.env.DB_URI)
+    await mongoose.connect(process.env.DB_URI, {
+        useCreateIndex: false
+    } as ConnectOptions)
     .then(() => {
         console.table({
             dbtype: "mongodb",
