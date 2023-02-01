@@ -74,12 +74,12 @@ const verification = async (req, res, next) => {
     });
 };
 exports.verification = verification;
-const createUserVerification = (req, res, next) => {
+const createUserVerification = async (req, res, next) => {
     const userId = lodash_1.default.chain(req).get("result").get("_id").value();
     const userEmail = lodash_1.default.chain(req).get("result").get("email").value();
     const jwt = jsonwebtoken_1.default.sign({ userId }, "mk98mb2RAZn^78tV!bok");
     const url = `https://job-board-quaghug.vercel.app/verification/email/${jwt}`;
-    mailservice_1.default.sendMail({
+    await mailservice_1.default.sendMail({
         to: userEmail,
         subject: 'Confirm Email',
         html: `Please click this link to confirm your email: <a href="${url}">HERE</a>`,

@@ -48,13 +48,13 @@ export const verification = async (req: Request, res: Response, next: NextFuncti
     
 }
 
-export const createUserVerification = (req: Request, res: Response, next: NextFunction) => {
+export const createUserVerification = async (req: Request, res: Response, next: NextFunction) => {
 	const userId = _.chain(req).get("result").get("_id").value();
 	const userEmail = _.chain(req).get("result").get("email").value();
 	const jwt = jsonwebtoken.sign({ userId }, "mk98mb2RAZn^78tV!bok")
 	const url = `https://job-board-quaghug.vercel.app/verification/email/${jwt}`;
 
-	mailTransporter.sendMail({
+	await mailTransporter.sendMail({
 		to: userEmail,
 		subject: 'Confirm Email',
 		html: `Please click this link to confirm your email: <a href="${url}">HERE</a>`,
