@@ -103,7 +103,7 @@ const emailConfirmation = async (req, res, next) => {
     catch (err) {
         throw err;
     }
-    // res.redirect("http://127.0.0.1:5501/client/");
+    res.redirect("https://job-board-quaghug.vercel.app/client/");
     return next();
 };
 exports.emailConfirmation = emailConfirmation;
