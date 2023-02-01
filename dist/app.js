@@ -51,15 +51,9 @@ console.log(process.env.DB_URI);
 // const options : ConnectOptions = ;
 const port = process.env.PORT || 4000;
 app.listen({ port }, async () => {
-    await mongoose_1.default.connect(process.env.DB_URI, {
-        useCreateIndex: false
-    })
+    await mongoose_1.default.connect(process.env.DB_UR)
         .then(() => {
-        console.table({
-            dbtype: "mongodb",
-            port,
-            dbHost: "localhost"
-        });
+        console.log("connected");
     })
         .catch(err => {
         console.log(err);
