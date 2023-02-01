@@ -51,7 +51,7 @@ console.log(process.env.DB_URI);
 // const options : ConnectOptions = ;
 const port = process.env.PORT || 4000;
 app.listen({ port }, async () => {
-    mongoose_1.default.connect(process.env.DB_UR)
+    await mongoose_1.default.connect(process.env.DB_UR)
         .then(() => {
         console.log("connected");
     })

@@ -33,7 +33,7 @@ console.log(process.env.DB_URI);
 
 const port = process.env.PORT || 4000
 app.listen({port}, async () => {
-    mongoose.connect(process.env.DB_UR)
+    await mongoose.connect(process.env.DB_UR)
     .then(() => {
         console.log("connected");
     })
