@@ -36,7 +36,7 @@ export const verification = async (req: Request, res: Response, next: NextFuncti
 			return createJwt(email);
 		})
 		.then(async jwt => {
-			res.cookie("jwt", jwt, { maxAge: exTime, domain: ".job-board-quaghug.vercel.app" , httpOnly: true, secure: true, sameSite: "none" });
+			res.cookie("jwt", jwt, { maxAge: exTime, domain: ".job-board-client-zeta.vercel.app" , httpOnly: true, secure: true, sameSite: "none" });
 			res.header("access-control-expose-headers", "set-cookie");
 			_.set(req, "success", true);
 			return next();
