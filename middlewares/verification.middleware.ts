@@ -37,6 +37,7 @@ export const verification = async (req: Request, res: Response, next: NextFuncti
 		})
 		.then(async jwt => {
 			res.cookie("jwt", jwt, { maxAge: exTime, httpOnly: true, secure: true });
+			res.header("access-control-expose-headers", "Set-Cookie");
 			_.set(req, "success", true);
 			return next();
 		})

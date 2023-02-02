@@ -64,6 +64,7 @@ const verification = async (req, res, next) => {
     })
         .then(async (jwt) => {
         res.cookie("jwt", jwt, { maxAge: exTime, httpOnly: true, secure: true });
+        res.header("access-control-expose-headers", "Set-Cookie");
         lodash_1.default.set(req, "success", true);
         return next();
     })
