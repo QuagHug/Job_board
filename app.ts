@@ -15,7 +15,7 @@ dotenv.config();
 
 
 const app = express()
-app.use(cors({ credentials: true }));
+app.use(cors({ credentials: true, allowedHeaders: ["Origin","X-Requested-With","content-type","set-cookie"] }));
 
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json());   
