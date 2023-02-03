@@ -38,7 +38,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
 dotenv.config();
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)({ credentials: true, allowedHeaders: ["Origin", "X-Requested-With", "content-type", "set-cookie"] }));
+app.use((0, cors_1.default)({ origin: ["https://job-board-client-zeta.vercel.app"], credentials: true, allowedHeaders: ["Origin", "X-Requested-With", "content-type", "set-cookie"] }));
 app.set("trust proxy", 1);
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
