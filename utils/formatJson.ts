@@ -2,6 +2,7 @@ import _ from "lodash";
 import { IJsonApiCollection, IJsonApiResource, IPaginationResponse } from "./interface";
 import { Request, Response, NextFunction } from "express";
 import { IUser, UserModel } from "../models/user.model";
+import { authenticate } from "passport";
 
 const formatJsonApi = (result: any) : IJsonApiResource => {
     return {
@@ -60,6 +61,7 @@ export const formatJsonVerification = async (req: Request, res: Response, next: 
     }
     return res.json({
         data: formatJsonApi(_.get(req, "result")),
+        authentication: _.get(req, "authentication"),
         links: {
             self: req.protocol + '://' + req.get('host') + req.originalUrl
         }

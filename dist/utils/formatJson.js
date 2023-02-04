@@ -59,6 +59,7 @@ const formatJsonVerification = async (req, res, next) => {
     }
     return res.json({
         data: formatJsonApi(lodash_1.default.get(req, "result")),
+        authentication: lodash_1.default.get(req, "authentication"),
         links: {
             self: req.protocol + '://' + req.get('host') + req.originalUrl
         }

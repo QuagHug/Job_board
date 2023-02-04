@@ -36,8 +36,9 @@ export const verification = async (req: Request, res: Response, next: NextFuncti
 			return createJwt(email);
 		})
 		.then(async jwt => {
-			res.cookie("jwt", jwt, { maxAge: exTime, domain: ".vercel.app", httpOnly: false, secure: true, sameSite: "none" });
-			res.header("access-control-expose-headers", "set-cookie");
+			_.set(req, "authentication", {
+				jwt, expire: exTime
+			})
 			_.set(req, "success", true);
 			return next();
 		})

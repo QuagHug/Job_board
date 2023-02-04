@@ -63,8 +63,9 @@ const verification = async (req, res, next) => {
         return createJwt(email);
     })
         .then(async (jwt) => {
-        res.cookie("jwt", jwt, { maxAge: exTime, domain: ".vercel.app", httpOnly: false, secure: true, sameSite: "none" });
-        res.header("access-control-expose-headers", "set-cookie");
+        lodash_1.default.set(req, "authentication", {
+            jwt, expire: exTime
+        });
         lodash_1.default.set(req, "success", true);
         return next();
     })
