@@ -7,6 +7,7 @@ const verificationRouter = express.Router();
 
 verificationRouter.post(
   '/',
+  MDW.authenticate,
   MDW.verification,
   formatJsonVerification
 )
