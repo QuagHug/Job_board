@@ -31,7 +31,7 @@ const formatJson_1 = require("../utils/formatJson");
 const MDW = __importStar(require("../middlewares"));
 const CompanyService = __importStar(require("../services/company.service"));
 const defaultRouter = express_1.default.Router();
-defaultRouter.get("/", MDW.authenticate);
+defaultRouter.get("/authenticate", MDW.authenticate, formatJson_1.formatJsonApiResource);
 defaultRouter.get("/:defaultId", MDW.wrapper(CompanyService.findCompanyById), formatJson_1.formatJsonApiResource);
 exports.default = defaultRouter;
 //# sourceMappingURL=default.route.js.map

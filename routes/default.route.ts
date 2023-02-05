@@ -8,9 +8,9 @@ import * as CompanyService from '../services/company.service'
 const defaultRouter = express.Router();
 
 defaultRouter.get(
-	"/",
-    MDW.authenticate
-
+	"/authenticate",
+    MDW.authenticate,
+	formatJsonApiResource
 )
 
 defaultRouter.get(
