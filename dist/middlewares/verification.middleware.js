@@ -33,7 +33,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const mailservice_1 = __importDefault(require("../utils/mailservice"));
 const SVC = __importStar(require("../services"));
-const exTime = 24 * 60 * 60 * 1000;
+// const exTime = 24 * 60 * 60 * 1000;
 const createJwt = (email) => {
     return jsonwebtoken_1.default.sign({ email }, process.env.JWT_SECRET, {
         expiresIn: '1d'
@@ -64,7 +64,7 @@ const verification = async (req, res, next) => {
     })
         .then(async (jwt) => {
         lodash_1.default.set(req, "authentication", {
-            jwt, expire: exTime
+            jwt
         });
         lodash_1.default.set(req, "success", true);
         return next();

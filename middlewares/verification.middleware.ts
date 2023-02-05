@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 import mailTransporter from "../utils/mailservice";
 import * as SVC from "../services";
 
-const exTime = 24 * 60 * 60 * 1000;
+// const exTime = 24 * 60 * 60 * 1000;
 
 const createJwt = (email: string) => {
 	return jsonwebtoken.sign({ email }, process.env.JWT_SECRET, {
@@ -37,7 +37,7 @@ export const verification = async (req: Request, res: Response, next: NextFuncti
 		})
 		.then(async jwt => {
 			_.set(req, "authentication", {
-				jwt, expire: exTime
+				jwt
 			})
 			_.set(req, "success", true);
 			return next();
