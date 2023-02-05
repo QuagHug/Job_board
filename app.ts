@@ -15,9 +15,8 @@ dotenv.config();
 
 
 const app = express()
-app.use(cors({origin: ["https://job-board-client-zeta.vercel.app"] ,credentials: true, allowedHeaders: ["Origin","X-Requested-With","content-type","set-cookie"] }));
+app.use(cors({origin: ["https://job-board-client-zeta.vercel.app"] , credentials: true, allowedHeaders: ["Origin","X-Requested-With","content-type","set-cookie"] }));
 
-app.set("trust proxy", 1);
 
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json());   
