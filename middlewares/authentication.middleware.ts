@@ -6,7 +6,7 @@ import * as UserService from '../services/user.service';
 export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
   // Headers Authorization: Bearer {{token}}
   // const jwt = _.last(_.split(_.get(req, 'headers.Authorization') as string, " "))
-  const jwt = req.cookies.jwt;
+  const jwt = req.headers.jwt as string;
   if (!jwt) return res.status(405).json({ message: "Token is missing haha" })
 
   try {

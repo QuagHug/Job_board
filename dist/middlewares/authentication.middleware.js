@@ -33,7 +33,7 @@ const UserService = __importStar(require("../services/user.service"));
 const authenticate = async (req, res, next) => {
     // Headers Authorization: Bearer {{token}}
     // const jwt = _.last(_.split(_.get(req, 'headers.Authorization') as string, " "))
-    const jwt = req.cookies.jwt;
+    const jwt = req.headers.jwt;
     if (!jwt)
         return res.status(405).json({ message: "Token is missing haha" });
     try {
