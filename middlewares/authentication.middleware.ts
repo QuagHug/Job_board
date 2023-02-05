@@ -7,14 +7,14 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
   // Headers Authorization: Bearer {{token}}
   // const jwt = _.last(_.split(_.get(req, 'headers.Authorization') as string, " "))
   const jwt = req.headers.jwt as string;
-  if (!jwt) return res.status(405).json({ message: "Token is missing haha" })
+  if (!jwt) return res.status(405).json({ message: "Token is missing" })
 
   try {
     const result = jsonwebtoken.verify(jwt, process.env.JWT_SECRET);
 
     const user = await UserService.findByEmail(_.get(result, "email"))
 
-    _.set(req, 'user', user);
+    _.set(req, 'result', user);
     res.status(200);
     return next()
   } catch (error) {

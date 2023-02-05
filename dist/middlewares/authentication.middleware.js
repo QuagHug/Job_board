@@ -35,11 +35,11 @@ const authenticate = async (req, res, next) => {
     // const jwt = _.last(_.split(_.get(req, 'headers.Authorization') as string, " "))
     const jwt = req.headers.jwt;
     if (!jwt)
-        return res.status(405).json({ message: "Token is missing haha" });
+        return res.status(405).json({ message: "Token is missing" });
     try {
         const result = jsonwebtoken_1.default.verify(jwt, process.env.JWT_SECRET);
         const user = await UserService.findByEmail(lodash_1.default.get(result, "email"));
-        lodash_1.default.set(req, 'user', user);
+        lodash_1.default.set(req, 'result', user);
         res.status(200);
         return next();
     }
