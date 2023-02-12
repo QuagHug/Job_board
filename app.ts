@@ -31,9 +31,11 @@ server.listen({port}, () => {
 io.on('connection', socket => {
     console.log(socket.id);
     socket.on("send-message-candidate", async (message, fromId, toId) => {
-        const recruiter = await SVC.findUserById((await SVC.findJobById(toId)).recruiterId);
-        SVC.createChat({ from_id: fromId._id, to_id: recruiter.id, message });
-        socket.to(fromId+recruiter._id.toString()).emit(message);
+        console.log(message);
+        
+        // const recruiter = await SVC.findUserById((await SVC.findJobById(toId)).recruiterId);
+        // SVC.createChat({ from_id: fromId._id, to_id: recruiter.id, message });
+        // socket.to(fromId+recruiter._id.toString()).emit(message);
     })
     socket.on("join-room-candidate", async (fromEmail, toJobId) => {
         const candidate = await SVC.findByEmail(fromEmail);
