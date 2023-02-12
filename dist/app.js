@@ -47,17 +47,6 @@ const io = new socket_io_1.Server(server, {
         origin: "*"
     }
 });
-app.use((0, cors_1.default)({ origin: ["https://job-board-client-zeta.vercel.app"], credentials: true, allowedHeaders: ["Origin", "X-Requested-With", "content-type", "set-cookie", "jwt"] }));
-app.use(express_1.default.urlencoded({ extended: true }));
-app.use(express_1.default.json());
-app.use((0, cookie_parser_1.default)());
-app.use('/', default_route_1.default);
-app.use('/jobs', job_route_1.default);
-app.use('/companies', company_route_1.default);
-app.use('/api', user_route_1.default);
-app.use('/verification', verification_route_1.default);
-console.log(process.env.DB_URI);
-console.log(process.env.SENDGRID_SECRET);
 io.on('connection', socket => {
     console.log(socket.id);
     socket.on("send-message-candidate", async (message, fromId, toId) => {
@@ -77,6 +66,17 @@ io.on('connection', socket => {
         socket.join(fromId + toId);
     });
 });
+app.use((0, cors_1.default)({ origin: ["https://job-board-client-zeta.vercel.app"], credentials: true, allowedHeaders: ["Origin", "X-Requested-With", "content-type", "set-cookie", "jwt"] }));
+app.use(express_1.default.urlencoded({ extended: true }));
+app.use(express_1.default.json());
+app.use((0, cookie_parser_1.default)());
+app.use('/', default_route_1.default);
+app.use('/jobs', job_route_1.default);
+app.use('/companies', company_route_1.default);
+app.use('/api', user_route_1.default);
+app.use('/verification', verification_route_1.default);
+console.log(process.env.DB_URI);
+console.log(process.env.SENDGRID_SECRET);
 // const options : ConnectOptions = ;
 mongoose_1.default.connect(process.env.DB_URI)
     .then(() => {
