@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "start": "node build/index.js",
+    "start": "node dist/app.js",
     "build": "tsc",
     "postinstall": "npm run build",
     "ts.check": "tsc --project tsconfig.json",
