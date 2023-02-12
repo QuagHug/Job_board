@@ -47,6 +47,10 @@ const io = new socket_io_1.Server(server, {
         origin: "*"
     }
 });
+const port = process.env.PORT || 4000;
+server.listen({ port }, () => {
+    console.log("server running");
+});
 io.on('connection', socket => {
     console.log(socket.id);
     socket.on("send-message-candidate", async (message, fromId, toId) => {
@@ -84,9 +88,5 @@ mongoose_1.default.connect(process.env.DB_URI)
 })
     .catch(err => {
     console.log(err);
-});
-const port = process.env.PORT || 4000;
-server.listen({ port }, () => {
-    console.log("server running");
 });
 //# sourceMappingURL=app.js.map

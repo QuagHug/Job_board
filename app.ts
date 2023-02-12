@@ -23,6 +23,11 @@ const io = new Server(server, {
     }
 });
 
+const port = process.env.PORT || 4000
+server.listen({port}, () => {
+    console.log("server running");
+})
+
 io.on('connection', socket => {
     console.log(socket.id);
     socket.on("send-message-candidate", async (message, fromId, toId) => {
@@ -68,9 +73,4 @@ mongoose.connect(process.env.DB_URI)
 })
 .catch(err => {
     console.log(err);
-})
-
-const port = process.env.PORT || 4000
-server.listen({port}, () => {
-    console.log("server running");
 })
