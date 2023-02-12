@@ -25,7 +25,7 @@ const io = new Server(server, {
 
 
 
-app.use(cors({origin: ["https://job-board-client-zeta.vercel.app", "http://127.0.0.1:5501"] , credentials: true, allowedHeaders: ["Origin","X-Requested-With","content-type","set-cookie", "jwt"] }));
+app.use(cors({origin: ["https://job-board-client-zeta.vercel.app"] , credentials: true, allowedHeaders: ["Origin","X-Requested-With","content-type","set-cookie", "jwt"] }));
 
 
 app.use(express.urlencoded({extended: true})); 

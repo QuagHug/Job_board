@@ -47,7 +47,7 @@ const io = new socket_io_1.Server(server, {
         origin: "*"
     }
 });
-app.use((0, cors_1.default)({ origin: ["https://job-board-client-zeta.vercel.app", "http://127.0.0.1:5501"], credentials: true, allowedHeaders: ["Origin", "X-Requested-With", "content-type", "set-cookie", "jwt"] }));
+app.use((0, cors_1.default)({ origin: ["https://job-board-client-zeta.vercel.app"], credentials: true, allowedHeaders: ["Origin", "X-Requested-With", "content-type", "set-cookie", "jwt"] }));
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
