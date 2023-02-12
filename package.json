@@ -4,8 +4,9 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "start": "nodemon dist/app.js",
+    "start": "node build/index.js",
     "build": "tsc",
+    "postinstall": "npm run build",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist",
     "test": "echo \"Error: no test specified\" && exit 1"
