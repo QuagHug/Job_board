@@ -12,6 +12,10 @@ export const findOneJob = (data: any) => {
     return JobModel.findOne({_id: new mongoose.Types.ObjectId(data.id)});
 }
 
+export const findJobById = (id: any) => {
+    return JobModel.findOne({_id: new mongoose.Types.ObjectId(id)});
+}
+
 export const findManyJob = async (data: any) => {
     let page = parseInt(data.page as string) || 0;
     let limit = parseInt(data.page as string) || 10;

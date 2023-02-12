@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updatePassword = exports.deleteOne = exports.updateOneUser = exports.replaceOne = exports.findByEmail = exports.findMany = exports.findOneUser = exports.create = void 0;
+exports.updatePassword = exports.deleteOne = exports.updateOneUser = exports.replaceOne = exports.findByEmail = exports.findMany = exports.findUserById = exports.findOneUser = exports.create = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const user_model_1 = require("../models/user.model");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
@@ -16,6 +16,10 @@ const findOneUser = (data) => {
     return user_model_1.UserModel.findOne({ _id: new mongoose_1.default.Types.ObjectId(data._id) });
 };
 exports.findOneUser = findOneUser;
+const findUserById = (id) => {
+    return user_model_1.UserModel.findOne({ _id: new mongoose_1.default.Types.ObjectId(id) });
+};
+exports.findUserById = findUserById;
 const findMany = async (data) => {
     let page = parseInt(data.page) || 0;
     let limit = parseInt(data.page) || 10;

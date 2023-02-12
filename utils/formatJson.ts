@@ -8,7 +8,7 @@ const formatJsonApi = (result: any) : IJsonApiResource => {
     return {
         type: 'UserSchema',
         _id: result._id,
-        attributes: _.omit(result, ['_id', 'createdAt', 'updatedAt']),
+        attributes: _.omit(result, ['createdAt', 'updatedAt']),
         relationships: {},
         meta: {
             createdAt: result.createdAt,

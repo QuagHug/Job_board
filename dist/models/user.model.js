@@ -36,6 +36,10 @@ const schema = new mongoose_1.default.Schema({
         minLength: 2,
         maxLength: 20
     },
+    userType: {
+        type: String,
+        required: true,
+    }
 }, {
     timestamps: {
         createdAt: 'createdAt',

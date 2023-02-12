@@ -3,14 +3,16 @@ import { IGeneral } from './general.model';
 import bcrypt from 'bcryptjs';
 
 export interface IUser extends IGeneral {
-    email: String,
+    email: string,
+    emailConfirmed: Boolean,
     dob: Date, 
-    firstName: String,
-    lastName: String,
-    password: string
+    firstName: string,
+    lastName: string,
+    password: string,
+    userType: string
 }
 
-const schema = new mongoose.Schema({ 
+const schema = new mongoose.Schema<IUser>({ 
     email: {
         type: String,
         required: true, 
@@ -40,6 +42,10 @@ const schema = new mongoose.Schema({
         minLength: 2,
         maxLength: 20
     },
+    userType: {
+        type: String,
+        required: true,
+    }
 }, {
     timestamps: {
         createdAt: 'createdAt',

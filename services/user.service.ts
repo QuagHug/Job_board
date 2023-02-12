@@ -12,6 +12,10 @@ export const findOneUser = (data: any) => {
     return UserModel.findOne({_id: new mongoose.Types.ObjectId(data._id)});
 }
 
+export const findUserById = (id: any) => {
+    return UserModel.findOne({_id: new mongoose.Types.ObjectId(id)});
+}
+
 export const findMany = async (data: any) => {
     let page = parseInt(data.page as string) || 0;
     let limit = parseInt(data.page as string) || 10;

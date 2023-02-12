@@ -10,7 +10,7 @@ const formatJsonApi = (result) => {
     return {
         type: 'UserSchema',
         _id: result._id,
-        attributes: lodash_1.default.omit(result, ['_id', 'createdAt', 'updatedAt']),
+        attributes: lodash_1.default.omit(result, ['createdAt', 'updatedAt']),
         relationships: {},
         meta: {
             createdAt: result.createdAt,
