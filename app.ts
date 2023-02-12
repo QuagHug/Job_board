@@ -51,7 +51,7 @@ io.on('connection', socket => {
 });
 
 
-app.use(cors({origin: ["https://job-board-client-zeta.vercel.app"] , credentials: true, allowedHeaders: ["Origin","X-Requested-With","content-type","set-cookie", "jwt"] }));
+app.use(cors({origin: ["https://job-board-hung-luu-client.herokuapp.com/"] , credentials: true, allowedHeaders: ["Origin","X-Requested-With","content-type","set-cookie", "jwt"] }));
 
 
 app.use(express.urlencoded({extended: true})); 
