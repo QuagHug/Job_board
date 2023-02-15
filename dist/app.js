@@ -32,6 +32,7 @@ const user_route_1 = __importDefault(require("./routes/user.route"));
 const verification_route_1 = __importDefault(require("./routes/verification.route"));
 const company_route_1 = __importDefault(require("./routes/company.route"));
 const default_route_1 = __importDefault(require("./routes/default.route"));
+const SVC = __importStar(require("./services"));
 const http_1 = __importDefault(require("http"));
 const dotenv = __importStar(require("dotenv"));
 const job_route_1 = __importDefault(require("./routes/job.route"));
@@ -55,12 +56,14 @@ io.on('connection', async (socket) => {
     console.log(socket.id);
     socket.on("send-message-candidate", async (message, fromId, toId) => {
         console.log(message);
+        SVC.createChat({ from_id: fromId, to_id: toId, message });
         socket.to(toId + fromId).emit("receive-message", message);
     });
     socket.on("join-room-candidate", async (fromId, toId) => {
         socket.join(toId + fromId);
     });
     socket.on("send-message-recruiter", async (message, fromId, toId) => {
+        SVC.createChat({ from_id: fromId, to_id: toId, message });
         socket.to(fromId + toId).emit("receive-message", message);
     });
     socket.on("join-room-recruiter", async (fromId, toId) => {
