@@ -16,10 +16,10 @@ const findCandidateByChat = async (data) => {
     console.log(chats);
     let usersId = [];
     let users = [];
-    chats.forEach(chat => {
+    for (const chat of chats) {
         if (!lodash_1.default.includes(usersId, chat.from_id))
             usersId.push(chat.from_id);
-    });
+    }
     console.log(usersId);
     lodash_1.default.map(usersId, async (id) => {
         console.log(id);
