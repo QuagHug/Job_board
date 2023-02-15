@@ -17,6 +17,8 @@ export const findCandidateByChat = async (data: any) => {
     chats.forEach(chat => {
         if(!_.includes(usersId, chat.from_id)) usersId.push(chat.from_id);
     })
+    console.log(usersId);
+    
     usersId.forEach(async id => {
         users.push(await findUserById(id));
     })

@@ -20,6 +20,7 @@ const findCandidateByChat = async (data) => {
         if (!lodash_1.default.includes(usersId, chat.from_id))
             usersId.push(chat.from_id);
     });
+    console.log(usersId);
     usersId.forEach(async (id) => {
         users.push(await (0, user_service_1.findUserById)(id));
     });
