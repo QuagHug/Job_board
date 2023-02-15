@@ -20,6 +20,8 @@ export const findCandidateByChat = async (data: any) => {
     console.log(usersId);
     
     usersId.forEach(async id => {
+        console.log(id);
+        
         users.push(await findUserByObjectId(id));
     })
     console.log(users);

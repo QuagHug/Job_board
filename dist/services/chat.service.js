@@ -22,6 +22,7 @@ const findCandidateByChat = async (data) => {
     });
     console.log(usersId);
     usersId.forEach(async (id) => {
+        console.log(id);
         users.push(await (0, user_service_1.findUserByObjectId)(id));
     });
     console.log(users);
