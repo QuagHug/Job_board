@@ -15,6 +15,9 @@ export const findOneUser = (data: any) => {
 export const findUserById = (id: any) => {
     return UserModel.findOne({_id: new mongoose.Types.ObjectId(id)});
 }
+export const findUserByObjectId = (id: any) => {
+    return UserModel.findOne({_id: id});
+}
 
 export const findMany = async (data: any) => {
     let page = parseInt(data.page as string) || 0;

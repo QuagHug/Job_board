@@ -2,7 +2,7 @@ import _ from "lodash";
 import mongoose from "mongoose";
 import { UserModel } from "../models";
 import { ChatModel } from "../models/chat.model";
-import { findUserById } from "./user.service";
+import { findUserById, findUserByObjectId } from "./user.service";
 
 export const createChat = (data: any) => {
     return ChatModel.create(data);
@@ -20,8 +20,7 @@ export const findCandidateByChat = async (data: any) => {
     console.log(usersId);
     
     usersId.forEach(async id => {
-        console.log(id.str);
-        users.push(await findUserById(id.str));
+        users.push(await findUserByObjectId(id));
     })
     console.log(users);
     
