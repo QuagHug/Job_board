@@ -13,6 +13,7 @@ import cors from "cors"
 
 import { Server } from "socket.io"
 import { ChatModel } from "./models/chat.model";
+import chatRouter from "./routes/chat.route";
 
 dotenv.config();
 const app = express()
@@ -31,11 +32,10 @@ server.listen({port}, () => {
 io.on('connection', socket => {
     console.log(socket.id);
     socket.on("send-message-candidate", async (message, fromId, toId) => {
-        console.log(message);
         
-        // const recruiter = await SVC.findUserById((await SVC.findJobById(toId)).recruiterId);
-        // SVC.createChat({ from_id: fromId._id, to_id: recruiter.id, message });
-        // socket.to(fromId+recruiter._id.toString()).emit(message);
+        const recruiter = await SVC.findUserById((await SVC.findJobById(toId)).recruiterId);
+        SVC.createChat({ from_id: fromId._id, to_id: recruiter.id, message });
+        socket.to(fromId+recruiter._id.toString()).emit("receive-message", message);
     })
     socket.on("join-room-candidate", async (fromEmail, toJobId) => {
         const candidate = await SVC.findByEmail(fromEmail);
@@ -43,7 +43,7 @@ io.on('connection', socket => {
         socket.join(candidate._id.toString()+recruiter._id.toString());
     })
     socket.on("send-message-recruiter", async (message, fromId, toId) => {
-        socket.to(fromId+toId).emit(message);
+        socket.to(fromId+toId).emit("receive-message", message);
     })
     socket.on("join-room-recruiter", async (fromId, toId) => {
         socket.join(fromId+toId);
@@ -62,6 +62,7 @@ app.use('/jobs', jobRouter)
 app.use('/companies', companyRouter)
 app.use('/api', userRouter)
 app.use('/verification', verificationRouter)
+app.use("/chat", chatRouter)
 
 console.log(process.env.DB_URI);
 console.log(process.env.SENDGRID_SECRET);

@@ -39,6 +39,7 @@ const job_route_1 = __importDefault(require("./routes/job.route"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
 const socket_io_1 = require("socket.io");
+const chat_route_1 = __importDefault(require("./routes/chat.route"));
 dotenv.config();
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
@@ -54,10 +55,9 @@ server.listen({ port }, () => {
 io.on('connection', socket => {
     console.log(socket.id);
     socket.on("send-message-candidate", async (message, fromId, toId) => {
-        console.log(message);
-        // const recruiter = await SVC.findUserById((await SVC.findJobById(toId)).recruiterId);
-        // SVC.createChat({ from_id: fromId._id, to_id: recruiter.id, message });
-        // socket.to(fromId+recruiter._id.toString()).emit(message);
+        const recruiter = await SVC.findUserById((await SVC.findJobById(toId)).recruiterId);
+        SVC.createChat({ from_id: fromId._id, to_id: recruiter.id, message });
+        socket.to(fromId + recruiter._id.toString()).emit("receive-message", message);
     });
     socket.on("join-room-candidate", async (fromEmail, toJobId) => {
         const candidate = await SVC.findByEmail(fromEmail);
@@ -65,7 +65,7 @@ io.on('connection', socket => {
         socket.join(candidate._id.toString() + recruiter._id.toString());
     });
     socket.on("send-message-recruiter", async (message, fromId, toId) => {
-        socket.to(fromId + toId).emit(message);
+        socket.to(fromId + toId).emit("receive-message", message);
     });
     socket.on("join-room-recruiter", async (fromId, toId) => {
         socket.join(fromId + toId);
@@ -80,6 +80,7 @@ app.use('/jobs', job_route_1.default);
 app.use('/companies', company_route_1.default);
 app.use('/api', user_route_1.default);
 app.use('/verification', verification_route_1.default);
+app.use("/chat", chat_route_1.default);
 console.log(process.env.DB_URI);
 console.log(process.env.SENDGRID_SECRET);
 // const options : ConnectOptions = ;
