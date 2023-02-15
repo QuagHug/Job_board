@@ -13,6 +13,7 @@ const createChat = (data) => {
 exports.createChat = createChat;
 const findCandidateByChat = async (data) => {
     const chats = await chat_model_1.ChatModel.find({ to_id: data._id });
+    console.log(chats);
     let usersId = [];
     let users = [];
     chats.forEach(chat => {
