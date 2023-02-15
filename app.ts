@@ -20,7 +20,7 @@ const app = express()
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "*"
+        origin: "https://job-board-hung-luu-client.herokuapp.com"
     }
 });
 
@@ -29,18 +29,13 @@ server.listen({port}, () => {
     console.log("server running");
 })
 
-io.on('connection', socket => {
+io.on('connection', async socket => {
     console.log(socket.id);
     socket.on("send-message-candidate", async (message, fromId, toId) => {
-        
-        const recruiter = await SVC.findUserById((await SVC.findJobById(toId)).recruiterId);
-        SVC.createChat({ from_id: fromId._id, to_id: recruiter.id, message });
-        socket.to(fromId+recruiter._id.toString()).emit("receive-message", message);
+        socket.to(toId+fromId).emit("receive-message", message);
     })
-    socket.on("join-room-candidate", async (fromEmail, toJobId) => {
-        const candidate = await SVC.findByEmail(fromEmail);
-        const recruiter = await SVC.findUserById((await SVC.findJobById(toJobId)).recruiterId);
-        socket.join(candidate._id.toString()+recruiter._id.toString());
+    socket.on("join-room-candidate", async (fromId, toId) => {
+        socket.join(toId+fromId);
     })
     socket.on("send-message-recruiter", async (message, fromId, toId) => {
         socket.to(fromId+toId).emit("receive-message", message);

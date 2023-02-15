@@ -32,7 +32,6 @@ const user_route_1 = __importDefault(require("./routes/user.route"));
 const verification_route_1 = __importDefault(require("./routes/verification.route"));
 const company_route_1 = __importDefault(require("./routes/company.route"));
 const default_route_1 = __importDefault(require("./routes/default.route"));
-const SVC = __importStar(require("./services"));
 const http_1 = __importDefault(require("http"));
 const dotenv = __importStar(require("dotenv"));
 const job_route_1 = __importDefault(require("./routes/job.route"));
@@ -45,24 +44,20 @@ const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
 const io = new socket_io_1.Server(server, {
     cors: {
-        origin: "*"
+        origin: "https://job-board-hung-luu-client.herokuapp.com"
     }
 });
 const port = process.env.PORT || 4000;
 server.listen({ port }, () => {
     console.log("server running");
 });
-io.on('connection', socket => {
+io.on('connection', async (socket) => {
     console.log(socket.id);
     socket.on("send-message-candidate", async (message, fromId, toId) => {
-        const recruiter = await SVC.findUserById((await SVC.findJobById(toId)).recruiterId);
-        SVC.createChat({ from_id: fromId._id, to_id: recruiter.id, message });
-        socket.to(fromId + recruiter._id.toString()).emit("receive-message", message);
+        socket.to(toId + fromId).emit("receive-message", message);
     });
-    socket.on("join-room-candidate", async (fromEmail, toJobId) => {
-        const candidate = await SVC.findByEmail(fromEmail);
-        const recruiter = await SVC.findUserById((await SVC.findJobById(toJobId)).recruiterId);
-        socket.join(candidate._id.toString() + recruiter._id.toString());
+    socket.on("join-room-candidate", async (fromId, toId) => {
+        socket.join(toId + fromId);
     });
     socket.on("send-message-recruiter", async (message, fromId, toId) => {
         socket.to(fromId + toId).emit("receive-message", message);
