@@ -32,6 +32,6 @@ const services_1 = require("../services");
 const formatJson_1 = require("../utils/formatJson");
 const chatRouter = express_1.default.Router();
 chatRouter.get("/recruiter-chat", MDW.wrapper(services_1.findCandidateByChat), formatJson_1.formatJsonApiCollection);
-chatRouter.get("/recruiter-chat", MDW.wrapper(services_1.findMessage), formatJson_1.formatJsonApiCollection);
+chatRouter.get("/message", MDW.wrapper(services_1.findMessage), formatJson_1.formatJsonApiCollection);
 exports.default = chatRouter;
 //# sourceMappingURL=chat.route.js.map

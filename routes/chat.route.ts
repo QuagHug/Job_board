@@ -10,7 +10,7 @@ chatRouter.get("/recruiter-chat",
     formatJsonApiCollection
 );
 
-chatRouter.get("/recruiter-chat", 
+chatRouter.get("/message", 
     MDW.wrapper(findMessage),
     formatJsonApiCollection
 );
