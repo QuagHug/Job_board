@@ -32,6 +32,7 @@ server.listen({port}, () => {
 io.on('connection', async socket => {
     console.log(socket.id);
     socket.on("send-message-candidate", async (message, fromId, toId) => {
+        console.log(message);
         socket.to(toId+fromId).emit("receive-message", message);
     })
     socket.on("join-room-candidate", async (fromId, toId) => {
