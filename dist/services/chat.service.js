@@ -16,17 +16,17 @@ const findCandidateByChat = async (data) => {
     console.log(chats);
     let usersId = [];
     let users = [];
-    for (const chat of chats) {
+    chats.forEach(chat => {
         if (!lodash_1.default.includes(usersId, chat.from_id))
             usersId.push(chat.from_id);
-    }
+    });
     console.log(usersId);
-    lodash_1.default.map(usersId, async (id) => {
+    for (const id of usersId) {
         console.log(id);
         const user = await (0, user_service_1.findUserByObjectId)(id);
         console.log(user);
         users.push(user);
-    });
+    }
     console.log(users);
     return users;
 };
