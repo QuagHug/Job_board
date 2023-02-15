@@ -10,8 +10,8 @@ export const createChat = (data: any) => {
 
 export const findCandidateByChat = async (data: any) => {
     const chats = await ChatModel.find({ to_id: data._id });
-    let usersId;
-    let users;
+    let usersId = [];
+    let users = [];
     chats.forEach(chat => {
         if(!_.includes(usersId, chat.from_id)) usersId.push(chat.from_id);
     })
