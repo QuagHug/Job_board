@@ -19,7 +19,7 @@ export const findCandidateByChat = async (data: any) => {
     })
     console.log(usersId);
     
-    usersId.map(async id => {
+    _.map(usersId, async id => {
         console.log(id);
         console.log(await findUserByObjectId(id));
         const user = await findUserByObjectId(id);

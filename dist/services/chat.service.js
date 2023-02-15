@@ -21,7 +21,7 @@ const findCandidateByChat = async (data) => {
             usersId.push(chat.from_id);
     });
     console.log(usersId);
-    usersId.map(async (id) => {
+    lodash_1.default.map(usersId, async (id) => {
         console.log(id);
         console.log(await (0, user_service_1.findUserByObjectId)(id));
         const user = await (0, user_service_1.findUserByObjectId)(id);
