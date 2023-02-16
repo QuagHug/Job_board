@@ -15,13 +15,13 @@ export const findCandidateByChat = async (data: any) => {
     let usersId = [];
     let users = [];
     for(const chat of chats) {
-        if(!_.includes(usersId, chat.from_id)) usersId.push(chat.from_id);
+        if(!_.includes(usersId, chat.from_id.toString())) usersId.push(chat.from_id.toString());
     }
     console.log(usersId);
     
     for(const id of usersId) {
         console.log(id);
-        const user = await findUserByObjectId(id);
+        const user = await findUserById(id);
         console.log(user);
         users.push(user);
     }
