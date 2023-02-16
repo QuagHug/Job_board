@@ -101,7 +101,7 @@ const emailConfirmation = async (req, res, next) => {
         await SVC.updateOneUser(userId, { emailConfirmed: true });
         // const user = await SVC.findOneUser({ _id: userId });
         // _.set(req, "result", user);
-        return res.redirect("https://job-board-client-zeta.vercel.app/index.html");
+        return res.redirect("https://job-board-hung-luu-client.herokuapp.com");
     }
     catch (err) {
         throw err;
